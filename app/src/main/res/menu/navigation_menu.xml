@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard_final"
+            android:title="@string/menu_dashboard"/>
+        <item android:id="@+id/nav_timetable"
+            android:icon="@drawable/ic_events"
+            android:title="@string/menu_timetable"/>
+        <item android:id="@+id/nav_schedule"
+            android:icon="@drawable/ic_schedule"
+            android:title="@string/menu_schedule"/>
+        <item android:id="@+id/nav_exam"
+            android:icon="@drawable/ic_exam_schedule"
+            android:title="@string/menu_exam"/>
+        <item android:id="@+id/nav_result"
+            android:icon="@drawable/ic_result"
+            android:title="@string/menu_result"/>
+    </group>
+    <item android:title="@string/menu_communicate">
+        <menu>
+            <item android:id="@+id/menu_change_password"
+                android:title="@string/menu_change_pass"/>
+            <item android:id="@+id/logout"
+                android:icon="@drawable/ic_sign_out"
+                android:title="@string/menu_logout"/>
+        </menu>
+    </item>
+</menu>

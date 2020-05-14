@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/sample_bg"
+    android:id="@+id/time_frag">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:background="@drawable/layout_border">
+
+        <TextView
+            android:id="@+id/day_monday"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="@string/mon_txt"
+            android:textSize="20sp"
+            android:gravity="center_horizontal" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/border_color" />
+
+        <TextView
+            android:id="@+id/day_tuesday"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tue_txt"
+            android:textSize="20sp"
+            android:gravity="center_horizontal" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/border_color" />
+
+        <TextView
+            android:id="@+id/day_wednesday"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="@string/wed_txt"
+            android:textSize="20sp" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/border_color" />
+
+        <TextView
+            android:id="@+id/day_thursday"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="@string/thu_txt"
+            android:textSize="20sp"
+            android:gravity="center_horizontal" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/border_color" />
+
+        <TextView
+            android:id="@+id/day_friday"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="@string/fri_txt"
+            android:textSize="20sp"
+            android:gravity="center_horizontal" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/border_color" />
+
+        <TextView
+            android:id="@+id/day_saturday"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:text="@string/sat_txt"
+            android:textSize="20sp"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/time_table_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/transparent" />
+
+
+</LinearLayout>

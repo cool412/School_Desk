@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6681FF</color>
+    <color name="colorPrimaryDark">#3F4DFF</color>
+    <color name="colorAccent">#DA6058</color>
+    <color name="colorTheme">#6681FF</color>
+    <color name="signinColor">#93CDDC</color>
+
+    <color name="time_table_day">#4D6681FF</color>
+    <color name="border_color">#6681FF</color>
+</resources>
