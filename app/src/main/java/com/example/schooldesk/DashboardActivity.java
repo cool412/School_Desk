@@ -96,9 +96,8 @@ public class DashboardActivity extends AppCompatActivity implements  NavigationV
                         new ResultFragment()).commit();
                 break;
             case R.id.menu_change_password:
-                Intent intent = new Intent();
-                intent.setClass(this,ChangePasswordActivity.class);
-
+                Intent intent = new Intent(this,ChangePasswordActivity.class);
+                intent.putExtra("class","change_password");
                 finish();
                 startActivity(intent);
                 break;

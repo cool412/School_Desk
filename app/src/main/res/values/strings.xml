@@ -58,5 +58,11 @@
     <string name="class_5_b">Class: 5-B</string>
     <string name="mathematics">Mathematics</string>
     <string name="subject">Subject:</string>
+    <string name="profile_photo">Profile Photo</string>
+    <string name="total_scored">Total Scored</string>
+    <string name="subject_appeared">Subject Appeared</string>
+    <string name="result">Result</string>
+    <string name="percentage">Percentage</string>
+    <string name="subject_s">Subject(s)</string>
 
 </resources>

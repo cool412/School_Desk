@@ -40,11 +40,11 @@ public class DashboardFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
+/*
         String connstr = "http://manage.hydrocarbonz.com/index.php/interfaceclass/authorize";
         String result="";
         String user="", pass="";
-/*
+
         try {
 
 
@@ -110,6 +110,5 @@ public class DashboardFragment extends Fragment {
             e.printStackTrace();
         }*/
         return view;
-        //return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

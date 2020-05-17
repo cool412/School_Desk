@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
     // If user is not logged in, we will load LoginActivity.
     private void movetoLoginActivity(){
         progressBar.setVisibility(View.GONE);
-        Intent intent = new Intent();
-        intent.setClass(this,LoginActivity.class);
+        Intent intent = new Intent(this,LoginActivity.class);
+        //intent.setClass(this,LoginActivity.class);
         startActivity(intent);
         finish();
     }

@@ -72,8 +72,6 @@ public class ForgotActivity extends AppCompatActivity {
             return;
         }
 
-        System.out.println(mobileNumber);
-
         // To Do for connecting with server.
 
         // If the details are correct then enable the OTP EditText and TextView and Submit button.
@@ -91,11 +89,11 @@ public class ForgotActivity extends AppCompatActivity {
             mEditOTP.requestFocus();
             return;
         }
-        System.out.println(stringOTP);
+
         // TO Do for sending OTP to server for validation.
         // If the details are correct then we will move to the next activity i.e. change password.
-        Intent intent = new Intent();
-        intent.setClass(this, ChangePasswordActivity.class);
+        Intent intent = new Intent(this, ChangePasswordActivity.class);
+        intent.putExtra("class","reset_password");
         startActivity(intent);
     }
 }
