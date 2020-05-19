@@ -64,29 +64,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // If user is not logged in, we will load LoginActivity.
-    private void movetoLoginActivity(){
-        progressBar.setVisibility(View.GONE);
-        Intent intent = new Intent(this,LoginActivity.class);
+    private void movetoLoginActivity() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         //intent.setClass(this,LoginActivity.class);
-        startActivity(intent);
+        progressBar.setVisibility(View.GONE);
         finish();
+        startActivity(intent);
     }
 
     //Below method is for moving to next activity if user is logged in.
     private void moveToNextActivityIfLogIn() {
-        progressBar.setVisibility(View.GONE);
         // Use is still logged in then we will continue with DashboardActivity.
-        Intent intent = new Intent();
-        //Below method might need some changes...
-        intent.setClass(getApplicationContext(), DashboardActivity.class);
+        Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
         // The below finish will destroy the MainActivity as soon as the new activity is invoked.
         finish();
+        progressBar.setVisibility(View.GONE);
         startActivity(intent);
     }
 
     private void checkLoginStatus() {
         // Check, if user has logged out of the application or not.
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, SchoolContract.SESSION_CHECK_URL,
                 new Response.Listener<String>() {
                     @Override
@@ -96,9 +93,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             String strResponse = jsonObject.getString(SchoolContract.RESPONSE_KEY);
                             if (strResponse.equals(SchoolContract.RESPONSE_CORRECT)) {
-
                                 moveToNextActivityIfLogIn();
-
                             } else if (strResponse.equals(SchoolContract.RESPONSE_INCORRECT)) {
                                 Toast.makeText(getApplicationContext(), "Sorry, Your session has expired! Please login again.",
                                         Toast.LENGTH_SHORT).show();

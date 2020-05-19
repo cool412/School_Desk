@@ -9,6 +9,9 @@ public class SharedPrefClass {
     private SharedPreferences sharedPreferences;
     private Context context;
 
+    //ToDo: I have to make synchronised to avoid multiple instances of this class.
+    // As this will used many times during the life cycle of the entire application.
+
     public SharedPrefClass(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.pref_file), Context.MODE_PRIVATE);

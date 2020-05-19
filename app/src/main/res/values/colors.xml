@@ -10,4 +10,13 @@
     <color name="border_color">#6681FF</color>
     <color name="pass_border">#7645FD2F</color>
     <color name="fail_border">#64FF0909</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+
+    <!--colors for Calendar layout-->
+    <color name="active_month_days">#04FFFFFF</color>
+    <color name="inactive_month_days">#CFCECE</color>
+    <color name="present_color">#EE14B31A</color>
+    <color name="absent_color">#E3F82823</color>
+    <color name="leave_color">#E5FFC800</color>
 </resources>

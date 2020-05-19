@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,15 +8,21 @@
     android:padding="15dp">
 
     <ImageView
+        android:id="@+id/login_image"
         android:layout_width="268dp"
         android:layout_height="287dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:layout_marginTop="15dp"
         android:contentDescription="@string/login_image"
         android:src="@drawable/ic_login_image" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/login_image"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
@@ -26,13 +32,16 @@
             android:id="@+id/login_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/login_image"
             android:autofillHints=""
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/text_layout_user"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         app:passwordToggleEnabled="true">
@@ -41,6 +50,7 @@
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/text_layout_user"
             android:hint="@string/password"
             android:importantForAutofill="no"
             android:inputType="textPassword" />
@@ -50,7 +60,8 @@
         android:id="@+id/btn_login"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_below="@id/text_layout_password"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
@@ -59,10 +70,20 @@
         android:text="@string/sign_in"
         android:textAllCaps="true" />
 
+    <ProgressBar
+        android:id="@+id/login_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
     <TextView
         android:id="@+id/forgot_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/btn_login"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
@@ -70,4 +91,4 @@
         android:text="@string/touble_message"
         tools:ignore="RtlHardcoded" />
 
-</LinearLayout>
+</RelativeLayout>

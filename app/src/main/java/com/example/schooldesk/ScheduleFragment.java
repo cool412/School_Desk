@@ -7,25 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.schooldesk.calendar_view.CalendarCustomView;
 import com.example.schooldesk.data.ScheduleAdapter;
-import com.example.schooldesk.data.VolleySingleton;
 import com.example.schooldesk.data.scheduleItems;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -35,6 +27,8 @@ public class ScheduleFragment extends Fragment {
     private ArrayList<scheduleItems> mExampleList, mExampleListTuesday;
     private RequestQueue mRequestQueue;
     private ImageView showHideView;
+    private ProgressBar progressBar;
+    private static final String TAG = DashboardActivity.class.getSimpleName();
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -56,14 +50,17 @@ public class ScheduleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
+
+        CalendarCustomView mView = view.findViewById(R.id.attendance_calendar);
         //Below code is to set title. But still needs some improvement.
         //Objects.requireNonNull(getActivity()).setTitle("Time Table");
         /* We have also implemented other classes to view data.
-        * ScheduleAdapter, scheduleItems.
-        * ScheduleAdapter is an adapter to display contents.
-        * scheduleItems contains the type of data which we are going to display.
-        * We have created an array of scheduleItems for storing data.*/
-
+         * ScheduleAdapter, scheduleItems.
+         * ScheduleAdapter is an adapter to display contents.
+         * scheduleItems contains the type of data which we are going to display.
+         * We have created an array of scheduleItems for storing data.*/
+//ndjfnjsd
+        /*
         showHideView = view.findViewById(R.id.hide_show_monday);
         showHideView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,10 +69,12 @@ public class ScheduleFragment extends Fragment {
             }
         });
 
+        CalendarView calendarView = view.findViewById(R.id.calender_attendance);
+
+
 
         mRecyclerView = view.findViewById(R.id.time_recycler_view);
         mRecyclerViewTuesday = view.findViewById(R.id.time_recycler_view_tuesday);
-
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerViewTuesday.setHasFixedSize(true);
@@ -89,7 +88,7 @@ public class ScheduleFragment extends Fragment {
 
         //mRequestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
         mRequestQueue = VolleySingleton.getInstance(getActivity()).getRequestQueue();
-        parseJSON();
+        //parseJSON();*/
         return view;
     }
 
@@ -97,7 +96,7 @@ public class ScheduleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
+/*
     private void parseJSON() {
         //String url = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true";
         String url = "http://manage.hydrocarbonz.com/index.php/interfaceclass/getTimetable";
@@ -167,5 +166,5 @@ public class ScheduleFragment extends Fragment {
             mRecyclerView.setVisibility(View.VISIBLE);
             showHideView.setImageResource(R.drawable.baseline_keyboard_arrow_down_black_24dp);
         }
-    }
+    }*/
 }

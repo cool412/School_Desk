@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogIn;
     private ImageView imagePass;
     private RequestQueue mStringRequest;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +53,18 @@ public class LoginActivity extends AppCompatActivity {
 
         EditUserName = findViewById(R.id.login_user);
         EditPassword = findViewById(R.id.login_password);
+        progressBar = findViewById(R.id.login_progressbar);
         //imagePass = findViewById(R.id.pass_visibility);
         btnLogIn = findViewById(R.id.btn_login);
+        progressBar.setVisibility(View.GONE);
 
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 btnLogIn.setEnabled(false);
                 // listener.loginUser(UserName, PassWord);
+                progressBar.setVisibility(View.VISIBLE);
+                System.out.println("button clicked");
                 loginUser();
             }
         });
@@ -68,8 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //listener.forgotPassWord();
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), ForgotActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ForgotActivity.class);
                 startActivity(intent);
             }
         });
@@ -79,14 +84,10 @@ public class LoginActivity extends AppCompatActivity {
     private void moveToNextActivityIfLogIn() {
 
         // Use is still logged in then we will continue with DashboardActivity.
-        Intent intent = new Intent();
-        //Below method might need some changes...
-        intent.setClass(this, DashboardActivity.class);
+        Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
         finish();
+        progressBar.setVisibility(View.GONE);
         startActivity(intent);
-        // The below finish will destroy the MainActivity as soon as the new activity is invoked.
-
-
     }
 
     private void loginUser() {
@@ -131,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                             // We are reading response in JSONObject because we have configured in server like that.
                             JSONObject jsonObject = new JSONObject(response);
                             String strResponse = jsonObject.getString(SchoolContract.AUTH_RESPONSE_KEY);
+                            System.out.println("checing network connection");
                             if (strResponse.equals(SchoolContract.RESPONSE_SUCCESS)) {
                                 // Saving desired data in sharedpreferances.
                                 sharedPrefClass.writeUserName(UserName);
@@ -141,10 +143,12 @@ public class LoginActivity extends AppCompatActivity {
                                 moveToNextActivityIfLogIn();
                             } else if (strResponse.equals(SchoolContract.AUTH_RESPONSE_INACTIVE)) {
                                 btnLogIn.setEnabled(true);
+                                progressBar.setVisibility(View.GONE);
                                 Toast.makeText(getApplicationContext(), "Sorry, User is not active! Please contact Administration.",
                                         Toast.LENGTH_SHORT).show();
                             } else if (strResponse.equals(SchoolContract.AUTH_RESPONSE_INVALID)) {
                                 btnLogIn.setEnabled(true);
+                                progressBar.setVisibility(View.GONE);
                                 Toast.makeText(getApplicationContext(),
                                         "Sorry, User is not Valid! Please enter valid username and password.",
                                         Toast.LENGTH_SHORT).show();
@@ -157,6 +161,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 btnLogIn.setEnabled(true);
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }) {
