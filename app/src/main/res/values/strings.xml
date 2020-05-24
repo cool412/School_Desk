@@ -8,7 +8,7 @@
     <!-- Below strings are for navigation_menu.xml file -->
     <string name="menu_dashboard">Dashboard</string>
     <string name="menu_timetable">Time Table</string>
-    <string name="menu_schedule">Schedule</string>
+    <string name="menu_attendance">Attendance</string>
     <string name="menu_exam">Exam Schedule</string>
     <string name="menu_result">Results</string>
     <string name="menu_communicate">Communicate</string>
@@ -69,5 +69,6 @@
     <string name="add_event">ADD Event</string>
     <string name="current_date">Current Date</string>
     <string name="attendance_taken">Attendance Taken</string>
+    <string name="image_desc">School Photo</string>
 
 </resources>

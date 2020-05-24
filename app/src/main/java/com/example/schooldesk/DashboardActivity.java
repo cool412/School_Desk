@@ -83,9 +83,9 @@ public class DashboardActivity extends AppCompatActivity implements  NavigationV
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new TimetableFragment()).commit();
                 break;
-            case R.id.nav_schedule:
+            case R.id.nav_attendance:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ScheduleFragment()).commit();
+                        new AttendanceFragment()).commit();
                 break;
             case R.id.nav_exam:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -133,7 +133,11 @@ public class DashboardActivity extends AppCompatActivity implements  NavigationV
         // Here if statement will stop to destroy the activity when drawer is open and back button is pressed.
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)){
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
+        } else if(getSupportFragmentManager().getBackStackEntryCount() != 0){
+            System.out.println("hello!!!!");
+            super.onBackPressed();
+        }
+        else {
             // the below else statement is required to exit the application right from this activity,
             // but it will ask user for confirmation in form of dialog box before killing application.
             AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);

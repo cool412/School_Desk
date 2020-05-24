@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ExamDetailActivity"></activity>
+        <activity android:name=".TeacherDashboardActivity"></activity>
+        <activity android:name=".ExamDetailActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".ForgotActivity" />

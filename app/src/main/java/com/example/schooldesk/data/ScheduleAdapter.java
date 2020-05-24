@@ -40,10 +40,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         String subject = currentItem.getSubject();
         String time = currentItem.getTime();
         String teacher = currentItem.getTeacher();
+        String firstThreeChar = subject.substring(0, 3);
 
         holder.mSubjectView.setText(subject);
         holder.mTimeView.setText(time);
         holder.mTeacherView.setText(teacher);
+        holder.mTextSubThumb.setText(firstThreeChar);
 
         //holder.mTextViewCreator.setText(creatorName);
         //holder.mTextViewLikes.setText("Likes: " + likeCount);
@@ -61,7 +63,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         //TextView mTextViewCreator;
         //TextView mTextViewLikes;
 
-        TextView mSubjectView, mTimeView, mTeacherView;
+        TextView mSubjectView, mTimeView, mTeacherView, mTextSubThumb;
 
         ScheduleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +71,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
             //mImageView = itemView.findViewById(R.id.image_view);
             mTimeView = itemView.findViewById(R.id.text_view_time);
             mTeacherView = itemView.findViewById(R.id.text_view_likes);
+            mTextSubThumb = itemView.findViewById(R.id.text_sub_thumb);
         }
     }
 }

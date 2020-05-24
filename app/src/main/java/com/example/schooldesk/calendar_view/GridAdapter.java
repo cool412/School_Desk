@@ -54,16 +54,20 @@ public class GridAdapter extends ArrayAdapter {
         int currentMonth = currentDate.get(Calendar.MONTH) + 1;
         int currentYear = currentDate.get(Calendar.YEAR);
         View view = convertView;
+
+
         if (view == null) {
             view = mInflater.inflate(R.layout.single_cell_layout, parent, false);
         }
         if (displayMonth == currentMonth && displayYear == currentYear) {
             view.setBackgroundColor(Color.parseColor("#FFFFFF"));
         } else {
+            //cellNumber.setTextColor(Color.parseColor("#C3BFC0"));
             view.setVisibility(View.INVISIBLE);
             //view.setBackgroundColor(Color.parseColor("#CFCECE"));
         }
         //Add day to calendar
+
         TextView cellNumber = view.findViewById(R.id.calendar_date_id);
         cellNumber.setText(String.valueOf(dayValue));
         //Add events to the calendar
@@ -73,14 +77,19 @@ public class GridAdapter extends ArrayAdapter {
             eventCalendar.setTime(allEvents.get(i).getDate());
             if (dayValue == eventCalendar.get(Calendar.DAY_OF_MONTH) && displayMonth == eventCalendar.get(Calendar.MONTH) + 1
                     && displayYear == eventCalendar.get(Calendar.YEAR)) {
-                if (allEvents.get(i).getMessage().equals("present")) {
-                    //eventIndicator.setBackgroundColor(R.color.present_color);
-                    cellNumber.setBackgroundResource(R.drawable.attendance_present_bg);
-                    //eventIndicator.setBackgroundColor(Color.parseColor("#2CDD33"));
-                } else if (allEvents.get(i).getMessage().equals("absent")) {
-                    //eventIndicator.setBackgroundColor(R.color.absent_color);
-                    cellNumber.setBackgroundResource(R.drawable.attendance_abcent_bg);
-                    //eventIndicator.setBackgroundColor(Color.parseColor("#EA2B27"));
+                switch (allEvents.get(i).getMessage()) {
+                    case "present":
+                        cellNumber.setTextColor(Color.parseColor("#FFFFFF"));
+                        cellNumber.setBackgroundResource(R.drawable.attendance_present_bg);
+                        break;
+                    case "absent":
+                        cellNumber.setBackgroundResource(R.drawable.attendance_abcent_bg);
+                        cellNumber.setTextColor(Color.parseColor("#FFFFFF"));
+                        break;
+                    case "leave":
+                        cellNumber.setBackgroundResource(R.drawable.attendance_leave_bg);
+                        cellNumber.setTextColor(Color.parseColor("#FFFFFF"));
+                        break;
                 }
             }
         }

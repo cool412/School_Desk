@@ -5,7 +5,8 @@
     android:id="@+id/activity_custom_calendar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,32 +20,30 @@
             android:id="@+id/previous_month"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/left_arrow" />
+            android:src="@drawable/ic_chevron_left_black_36dp" />
 
         <TextView
             android:id="@+id/display_current_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="4dp"
             android:layout_weight="3"
             android:gravity="center"
             android:text="@string/current_date"
             android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textSize="26sp" />
 
         <ImageView
             android:id="@+id/next_month"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/right_arrow" />
+            android:src="@drawable/ic_chevron_right_black_36dp" />
     </LinearLayout>
     <!--
         <Button
@@ -59,7 +58,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal"
         android:paddingTop="4dp"
         android:paddingBottom="4dp">
@@ -72,8 +70,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/sun_txt"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/mon"
@@ -83,8 +81,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/mon_txt"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tue"
@@ -94,8 +92,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/tue_txt"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/wed"
@@ -105,8 +103,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/wed_txt"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/thu"
@@ -116,8 +114,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/thu_txt"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/fri"
@@ -127,8 +125,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/fri_txt"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/sat"
@@ -138,8 +136,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/sat_txt"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <GridView
@@ -148,130 +146,264 @@
         android:layout_height="wrap_content"
         android:numColumns="7" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/attendance_taken"
-            android:textColor="#0C0C0C"
-            android:textSize="18sp"
-            android:typeface="normal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:background="@color/absent_color"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_total_attendance"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:text="Absent"
+                android:textColor="@color/colorWhite"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:text="Days"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_absent_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="20"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/attendance_total_bg"
-            android:padding="5dp"
-            android:text="35"
-            android:textColor="#0C0C0C"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView3"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="@+id/textView3" />
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:background="@color/present_color"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_present_day"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:text="Present"
+                android:textColor="@color/colorWhite"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:text="Days"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_present_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="20"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/attendance_present_bg"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="20"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/text_absent_day"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:background="@color/leave_color"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_absent_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/attendance_abcent_bg"
-            android:padding="5dp"
-            android:text="25"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/text_present_day"
-            app:layout_constraintEnd_toStartOf="@+id/text_leave_day"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/text_present_day"
-            app:layout_constraintTop_toTopOf="@+id/text_present_day" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:text="On"
+                android:textColor="@color/colorWhite"
+                android:textSize="13sp" />
 
-        <TextView
-            android:id="@+id/text_leave_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/attendance_leave_bg"
-            android:padding="5dp"
-            android:text="30"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/text_absent_day"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/text_absent_day"
-            app:layout_constraintTop_toTopOf="@+id/text_absent_day" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:text="Leave"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Present"
-            android:textColor="#0C0C0C"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/text_present_day"
-            app:layout_constraintStart_toStartOf="@+id/text_present_day"
-            app:layout_constraintTop_toBottomOf="@+id/text_present_day" />
+            <TextView
+                android:id="@+id/text_leave_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="20"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Absent"
-            android:textColor="#0C0C0C"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_absent_day" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Leave"
-            android:textColor="#0C0C0C"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/text_leave_day"
-            app:layout_constraintStart_toStartOf="@+id/text_leave_day"
-            app:layout_constraintTop_toBottomOf="@+id/text_leave_day" />
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="5dp"
-            android:text="Absent Percentage 100%"
-            android:textColor="#0C0C0C"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            tools:text="Absent Percentage 100%" />
+    <TextView
+        android:id="@+id/text_presence_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Presance Percentage: 100%"
+        android:paddingTop="5dp"
+        android:paddingStart="5dp"/>
+    <!--
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/attendance_taken"
+                android:textColor="#0C0C0C"
+                android:textSize="18sp"
+                android:typeface="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_total_attendance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/attendance_total_bg"
+                android:padding="5dp"
+                android:text="35"
+                android:textColor="#0C0C0C"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/text_present_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/attendance_present_bg"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="20"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/text_absent_day"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/text_absent_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/attendance_abcent_bg"
+                android:padding="5dp"
+                android:text="25"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_present_day"
+                app:layout_constraintEnd_toStartOf="@+id/text_leave_day"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/text_present_day"
+                app:layout_constraintTop_toTopOf="@+id/text_present_day" />
+
+            <TextView
+                android:id="@+id/text_leave_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/attendance_leave_bg"
+                android:padding="5dp"
+                android:text="30"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_absent_day"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/text_absent_day"
+                app:layout_constraintTop_toTopOf="@+id/text_absent_day" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Present"
+                android:textColor="#0C0C0C"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/text_present_day"
+                app:layout_constraintStart_toStartOf="@+id/text_present_day"
+                app:layout_constraintTop_toBottomOf="@+id/text_present_day" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Absent"
+                android:textColor="#0C0C0C"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_absent_day" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Leave"
+                android:textColor="#0C0C0C"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/text_leave_day"
+                app:layout_constraintStart_toStartOf="@+id/text_leave_day"
+                app:layout_constraintTop_toBottomOf="@+id/text_leave_day" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="5dp"
+                android:text="Absent Percentage 100%"
+                android:textColor="#0C0C0C"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                tools:text="Absent Percentage 100%" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        -->
 
 </LinearLayout>

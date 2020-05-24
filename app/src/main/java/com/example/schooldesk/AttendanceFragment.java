@@ -21,7 +21,7 @@ import com.example.schooldesk.data.scheduleItems;
 
 import java.util.ArrayList;
 
-public class ScheduleFragment extends Fragment {
+public class AttendanceFragment extends Fragment {
     private RecyclerView mRecyclerView, mRecyclerViewTuesday;
     private ScheduleAdapter mExampleAdapter, mExampleAdapterTuesday;
     private ArrayList<scheduleItems> mExampleList, mExampleListTuesday;
@@ -49,7 +49,7 @@ public class ScheduleFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
+        View view = inflater.inflate(R.layout.fragment_attendance, container, false);
 
         CalendarCustomView mView = view.findViewById(R.id.attendance_calendar);
         //Below code is to set title. But still needs some improvement.

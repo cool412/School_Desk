@@ -10,9 +10,9 @@
         <item android:id="@+id/nav_timetable"
             android:icon="@drawable/ic_events"
             android:title="@string/menu_timetable"/>
-        <item android:id="@+id/nav_schedule"
+        <item android:id="@+id/nav_attendance"
             android:icon="@drawable/ic_schedule"
-            android:title="@string/menu_schedule"/>
+            android:title="@string/menu_attendance"/>
         <item android:id="@+id/nav_exam"
             android:icon="@drawable/ic_exam_schedule"
             android:title="@string/menu_exam"/>
