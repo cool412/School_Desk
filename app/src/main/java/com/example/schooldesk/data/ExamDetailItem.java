@@ -1,16 +1,20 @@
 package com.example.schooldesk.data;
 
 public class ExamDetailItem {
-    private String mDayOfExam, mMonthOfExam, mTimeOfExam, mSubject, mTotalMarks, mObtainedMarks, mExamDescription, mResult;
+    private String mDayOfExam, mMonthOfExam, mYearOfExam, mSubject, mTotalMarks,
+            mObtainedMarks, mPassingMarks, mExamStartTime, mExamEndTime, mResult;
 
-    public ExamDetailItem(String subject, String day, String month, String time, String total, String obtainedMarks, String description, String result) {
+    public ExamDetailItem(String subject, String day, String month, String year, String total, String obtainedMarks,
+                          String passingMarks, String examStartTime, String examEndTime, String result) {
         mSubject = subject;
         mDayOfExam = day;
         mMonthOfExam = month;
-        mTimeOfExam = time;
+        mYearOfExam = year;
         mTotalMarks = total;
         mObtainedMarks = obtainedMarks;
-        mExamDescription = description;
+        mPassingMarks = passingMarks;
+        mExamStartTime = examStartTime;
+        mExamEndTime = examEndTime;
         mResult = result;
     }
 
@@ -19,7 +23,6 @@ public class ExamDetailItem {
     }
 
     public String getDateOfExam() {
-       // return mDateOfExam;
         return "";
     }
 
@@ -32,12 +35,12 @@ public class ExamDetailItem {
         return mMonthOfExam;
     }
 
-    public String getTimeOfExam() {
-        return mTimeOfExam;
+    public String getYearOfExam() {
+        return mYearOfExam;
     }
 
     public String getTotalMarks() {
-        return "Total Makes: "+mTotalMarks;
+        return "Total Marks: "+mTotalMarks;
     }
 
     public String getObtainedMarks() {
@@ -48,8 +51,12 @@ public class ExamDetailItem {
         return "Marks: " + mObtainedMarks + " / " + mTotalMarks;
     }
 
-    public String getExamDescription() {
-        return mExamDescription;
+    public String getPassingMarks() {
+        return "Passing Marks: " + mPassingMarks;
+    }
+
+    public String getExamDuration() {
+        return mExamStartTime + " to " + mExamEndTime;
     }
 
     public String getResult(){

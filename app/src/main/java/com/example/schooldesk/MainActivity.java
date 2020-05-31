@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        //System.out.println(response);
                         try {
                             // We are reading response in JSONObject because we have configured in server like that.
                             JSONObject jsonObject = new JSONObject(response);

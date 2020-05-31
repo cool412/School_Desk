@@ -77,23 +77,23 @@ public class DashboardActivity extends AppCompatActivity implements  NavigationV
         switch (item.getItemId()){
             case R.id.nav_dashboard:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new DashboardFragment()).commit();
+                        new DashboardFragment()).addToBackStack(null).commit();
                 break;
             case R.id.nav_timetable:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new TimetableFragment()).commit();
+                        new TimetableFragment()).addToBackStack(null).commit();
                 break;
             case R.id.nav_attendance:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AttendanceFragment()).commit();
+                        new AttendanceFragment()).addToBackStack(null).commit();
                 break;
             case R.id.nav_exam:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ExamFragment()).commit();
+                        new ExamFragment()).addToBackStack(null).commit();
                 break;
             case R.id.nav_result:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ResultFragment()).commit();
+                        new ResultFragment()).addToBackStack(null).commit();
                 break;
             case R.id.menu_change_password:
                 Intent intent = new Intent(this,ChangePasswordActivity.class);
@@ -130,11 +130,13 @@ public class DashboardActivity extends AppCompatActivity implements  NavigationV
 
     @Override
     public void onBackPressed() {
+
         // Here if statement will stop to destroy the activity when drawer is open and back button is pressed.
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)){
             mDrawerLayout.closeDrawer(GravityCompat.START);
         } else if(getSupportFragmentManager().getBackStackEntryCount() != 0){
-            System.out.println("hello!!!!");
+            //TODO: when fragment is changed by clicking back press, navigation is checked to previous one.
+            //requires some attention. Not a big deal but it will be required to do so.
             super.onBackPressed();
         }
         else {

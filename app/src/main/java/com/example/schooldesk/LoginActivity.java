@@ -106,12 +106,6 @@ public class LoginActivity extends AppCompatActivity {
             EditPassword.requestFocus();
             return;
         }
-        // Below is temporary code for login.
-        //sharedPrefClass.writeUserName(UserName);
-        //sharedPrefClass.writeLoginStatus(true);
-        //sharedPrefClass.writeSessionId("session active");
-        //moveToNextActivityIfLogIn();
-
 
         /*
         here is example for making JSONObject for testing, if we do not have server connection available.
@@ -128,11 +122,11 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        //System.out.println(response);
                         try {
                             // We are reading response in JSONObject because we have configured in server like that.
                             JSONObject jsonObject = new JSONObject(response);
                             String strResponse = jsonObject.getString(SchoolContract.AUTH_RESPONSE_KEY);
-                            System.out.println("checing network connection");
                             if (strResponse.equals(SchoolContract.RESPONSE_SUCCESS)) {
                                 // Saving desired data in sharedpreferances.
                                 sharedPrefClass.writeUserName(UserName);
@@ -176,7 +170,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         mStringRequest.add(stringRequest);
-        //btnLogIn.setEnabled(true);
 
 
         // Below method is sample for JSONObject.

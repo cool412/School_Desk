@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,6 +42,7 @@ import java.util.Objects;
 public class DashboardFragment extends Fragment {
     private TextView mTextExam;
     private TextView mTextAttendance;
+    private LinearLayout mLinearExamSchedule, mLinearTimeTable;
 
     @Nullable
     @Override
@@ -49,8 +51,8 @@ public class DashboardFragment extends Fragment {
 
         TextView mTextProfile = view.findViewById(R.id.text_profile);
 
-        ImageView mImageTimeTable = view.findViewById(R.id.image_time_table);
-        mImageTimeTable.setOnClickListener(new View.OnClickListener() {
+        mLinearTimeTable = view.findViewById(R.id.layout_time_table);
+        mLinearTimeTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -58,8 +60,8 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        ImageView mImageExam = view.findViewById(R.id.image_exam_schedule);
-        mImageExam.setOnClickListener(new View.OnClickListener() {
+        mLinearExamSchedule = view.findViewById(R.id.layout_exam_schedule);
+        mLinearExamSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

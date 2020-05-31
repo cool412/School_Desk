@@ -7,17 +7,32 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.schooldesk.data.ExamAdapter;
 import com.example.schooldesk.data.ExamDetailAdapter;
 import com.example.schooldesk.data.ExamDetailItem;
 import com.example.schooldesk.data.ExamItems;
+import com.example.schooldesk.data.SchoolContract;
 import com.example.schooldesk.data.VolleySingleton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
-public class ExamDetailActivity extends AppCompatActivity  {
+public class ExamDetailActivity extends AppCompatActivity {
     TextView mTotalMarks, mTotalResult, mPercentage, mSubjectAppeared;
     private RecyclerView mRecyclerView;
     private ExamDetailAdapter mExamDetailAdapter;
@@ -32,37 +47,93 @@ public class ExamDetailActivity extends AppCompatActivity  {
         Intent intent = getIntent();
         Serializable serializableExtra = intent.getSerializableExtra("clickExam");
         ExamItems examItems = (ExamItems) serializableExtra;
-        //TextView text = findViewById(R.id.text);
+        String id = Objects.requireNonNull(examItems).getExamId();
 
-        //assert examItems != null;
-        //text.setText(examItems.getExamName());
+        String examDescription = examItems.getExamDesc();
+        TextView textExamDescription = findViewById(R.id.text_exam_description);
+        textExamDescription.setText(examDescription);
 
+        //TODO... I am still showing student name from fix text. need to do something for that.
         mTotalMarks = findViewById(R.id.text_marks_scored);
         mTotalResult = findViewById(R.id.text_result);
-        mPercentage = findViewById(R.id.text_percentage);
         mSubjectAppeared = findViewById(R.id.text_subject_appeared);
 
         mRecyclerView = findViewById(R.id.exam_detail_recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRequestQueue = VolleySingleton.getInstance(this).getRequestQueue();
-        loadExamDetail();
+        loadExamDetail(id);
     }
 
-    private void loadExamDetail(){
+    private void loadExamDetail(final String examId) {
         mExamDetailList = new ArrayList<>();
 
-        mExamDetailList.add(new ExamDetailItem("Mathematics", "16", "Apr", "10:00 AM",
-                "50", "48", "Algebra Weekly Exam","pass"));
-        mExamDetailList.add(new ExamDetailItem("Science", "17", "Apr", "11:00 AM",
-                "50", "45", "Environment Weekly Exam", "pass"));
-        mExamDetailList.add(new ExamDetailItem("Hindi", "18", "Apr", "12:00 PM",
-                "50", "40", "Raju Comic Weekly Exam","pass"));
-        mExamDetailList.add(new ExamDetailItem("Gujarati", "20", "Apr", "01:00 PM",
-                "50", "42", "Jay Jay Garwi Weekly Exam","fail"));
-        mExamDetailList.add(new ExamDetailItem("Social Study", "15", "Apr", "02:00 PM",
-                "50", "45", "Mughal Emperor Weekly Exam","fail"));
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, SchoolContract.EXAM_DETAIL_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //System.out.println(response);
+                        try {
+                            // We are reading response in JSONObject because we have configured in server like that.
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.getString(SchoolContract.RESPONSE_KEY).equals(SchoolContract.RESPONSE_SUCCESS)) {
+                                String totalScore = jsonObject.getString(SchoolContract.TOTAL_SCORE_KEY);
+                                String subjectAppeared = jsonObject.getString(SchoolContract.SUBJECT_APPEARED_KEY);
+                                String overAllResult = jsonObject.getString(SchoolContract.OVERALL_RESULT_KRY);
+                                String percentage = jsonObject.getString(SchoolContract.PERCENTAGE_SCORE_KEY);
+                                displayText(totalScore, subjectAppeared, overAllResult, percentage);
+                                JSONArray jsonArray = jsonObject.getJSONArray(SchoolContract.SUBJECT_WISE_LIST_KEY);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject hit = jsonArray.getJSONObject(i);
+                                    String subjectName = hit.getString(SchoolContract.SUBJECT_NAME_KEY);
+                                    String dayOfMonth = hit.getString(SchoolContract.SUBJECT_DAY_OF_MONTH);
+                                    String month = hit.getString(SchoolContract.SUBJECT_MONTH);
+                                    String year = hit.getString(SchoolContract.SUBJECT_YEAR);
+                                    String totalMarks = hit.getString(SchoolContract.SUBJECT_TOTAL_MARKS);
+                                    String obtainedMarks = hit.getString(SchoolContract.SUBJECT_OBTAINED_MARKS);
+                                    String passingMarks = hit.getString(SchoolContract.SUBJECT_PASSING_MARKS);
+                                    String startTime = hit.getString(SchoolContract.SUBJECT_START_TIME);
+                                    String endTime = hit.getString(SchoolContract.SUBJECT_END_TIME);
+                                    String examResult = hit.getString(SchoolContract.SUBJECT_RESULT_KEY);
 
-        mExamDetailAdapter = new ExamDetailAdapter(this,mExamDetailList);
-        mRecyclerView.setAdapter(mExamDetailAdapter);
+                                    mExamDetailList.add(new ExamDetailItem(subjectName, dayOfMonth, month, year,
+                                            totalMarks, obtainedMarks, passingMarks, startTime, endTime, examResult));
+                                }
+                                mExamDetailAdapter = new ExamDetailAdapter(getApplicationContext(), mExamDetailList);
+                                mRecyclerView.setAdapter(mExamDetailAdapter);
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Sorry, There is an invalid response from server.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            // Below method is for sending as data to server over HTTP request.
+            // We have to use the same key which we have used in server.
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put(SchoolContract.USERNAME_KEY, DashboardActivity.sharedPrefClass.readUserName());
+                params.put(SchoolContract.SESSION_SEND_KEY, DashboardActivity.sharedPrefClass.readSessionId());
+                params.put(SchoolContract.USER_ROLL_KEY, DashboardActivity.sharedPrefClass.readAccountType());
+                params.put(SchoolContract.EXAM_ID_KEY, examId);
+                return params;
+            }
+        };
+        mRequestQueue.add(stringRequest);
+    }
+
+    private void displayText(String total, String appeared, String result, String percentage) {
+        mTotalResult.setText(result);
+        mSubjectAppeared.setText(appeared);
+        String dispResult = total + " (" + percentage + ")";
+        mTotalMarks.setText(dispResult);
     }
 }

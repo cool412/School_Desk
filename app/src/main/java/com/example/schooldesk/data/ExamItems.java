@@ -1,21 +1,23 @@
 package com.example.schooldesk.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ExamItems implements Serializable {
-    private String mExamName, mExamDesc, mClassNumber, mExamStartDay, mExamStartMonth, mExamEndDay, mExamEndMonth;
+    private String mExamName, mExamDesc, mClassNumber, mExamStartDate, mExamEndDate, mExamId;
     private String[] mExamSubject;
 
-    public ExamItems(String name, String desc, String[] sub, String classNumber, String examStartDay,
-                     String examStartMonth, String examEndDay, String examEndMonth) {
+    public ExamItems(String id, String name, String desc, String[] sub, String classNumber,
+                     String examStartDate, String examEndDate) {
+        mExamId = id;
         mExamName = name;
         mExamDesc = desc;
         mExamSubject = sub;
         mClassNumber = classNumber;
-        mExamStartDay = examStartDay;
-        mExamStartMonth = examStartMonth;
-        mExamEndDay = examEndDay;
-        mExamEndMonth = examEndMonth;
+        mExamStartDate = examStartDate;
+        //mExamStartMonth = examStartMonth;
+        mExamEndDate = examEndDate;
+        //mExamEndMonth = examEndMonth;
     }
 
     public String getExamName() {
@@ -35,27 +37,31 @@ public class ExamItems implements Serializable {
     }
 
     public String getExamStartDay() {
-        return mExamStartDay;
+        return mExamStartDate;
     }
 
-    public String getExamStartMonth() {
-        return mExamStartMonth;
-    }
+    //public String getExamStartMonth() {
+    //    return mExamStartMonth;
+    //}
 
     public String getExamEndDay() {
-        return mExamEndDay;
+        return mExamEndDate;
     }
 
-    public String getmExamEndMonth() {
-        return mExamEndMonth;
-    }
+    //public String getmExamEndMonth() {
+    //    return mExamEndMonth;
+    //}
 
     public String getExamDateRange() {
-        String datePart = "Date: " + mExamStartDay + " " + mExamStartMonth + " ";
-        if (mExamEndDay.isEmpty() | mExamEndMonth.isEmpty()) {
+        String datePart = "Date: " + mExamStartDate + " ";
+        if (mExamEndDate.isEmpty()) {
             return datePart;
         } else {
-            return datePart + " to " + mExamEndDay + " " + mExamEndMonth;
+            return datePart + " to " + mExamEndDate;
         }
+    }
+
+    public String getExamId() {
+        return mExamId;
     }
 }
