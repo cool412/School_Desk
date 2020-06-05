@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="12dp"
-                android:text="@string/class_5_b" />
+                tools:text="@string/class_5_b" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,8 +97,8 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="5dp"
                 android:paddingStart="2dp"
-                android:text="English"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:text="English" />
 
             <LinearLayout
                 android:id="@+id/subject_layout"

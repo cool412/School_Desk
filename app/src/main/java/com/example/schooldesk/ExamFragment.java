@@ -26,6 +26,7 @@ import com.example.schooldesk.data.ScheduleAdapter;
 import com.example.schooldesk.data.SchoolContract;
 import com.example.schooldesk.data.VolleySingleton;
 import com.example.schooldesk.data.scheduleItems;
+import com.example.schooldesk.user.SharedPrefClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -121,8 +122,8 @@ public class ExamFragment extends Fragment implements Serializable {
                                         str[j] = hitSubject.getString(SchoolContract.EXAM_SUBJECT_NAME_KEY);
                                     }
 
-                                    //TODO: Class Number is still pending.
-                                    mExamList.add(new ExamItems(examId, examName, examDescription, str, "5", startDate, endDate));
+                                    mExamList.add(new ExamItems(examId, examName, examDescription, str,
+                                            SharedPrefClass.getInstance(getActivity()).getStudentClass(), startDate, endDate));
                                 }
                                 mExamAdapter = new ExamAdapter(getActivity(), mExamList);
                                 mRecyclerView.setAdapter(mExamAdapter);
@@ -146,9 +147,9 @@ public class ExamFragment extends Fragment implements Serializable {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put(SchoolContract.USERNAME_KEY, DashboardActivity.sharedPrefClass.readUserName());
-                params.put(SchoolContract.SESSION_SEND_KEY, DashboardActivity.sharedPrefClass.readSessionId());
-                params.put(SchoolContract.USER_ROLL_KEY, DashboardActivity.sharedPrefClass.readAccountType());
+                params.put(SchoolContract.USERNAME_KEY, SharedPrefClass.getInstance(getContext()).readUserName());
+                params.put(SchoolContract.SESSION_SEND_KEY, SharedPrefClass.getInstance(getContext()).readSessionId());
+                params.put(SchoolContract.USER_ROLL_KEY, SharedPrefClass.getInstance(getContext()).readAccountType());
                 return params;
             }
         };

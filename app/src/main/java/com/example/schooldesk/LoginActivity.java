@@ -23,6 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.schooldesk.data.SchoolContract;
 import com.example.schooldesk.data.VolleySingleton;
 import com.example.schooldesk.user.SharedPrefClass;
+import com.example.schooldesk.user.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,8 +33,8 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    @SuppressLint("StaticFieldLeak")
-    private static SharedPrefClass sharedPrefClass;
+    //@SuppressLint("StaticFieldLeak")
+    //private SharedPrefClass sharedPrefClass;
 
     private EditText EditUserName, EditPassword;
     private Button btnLogIn;
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        sharedPrefClass = new SharedPrefClass(this);
+        //sharedPrefClass = new SharedPrefClass(this);
 
         mStringRequest = VolleySingleton.getInstance(getApplication()).getRequestQueue();
 
@@ -124,15 +125,23 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         //System.out.println(response);
                         try {
+                            //System.out.println(response);
                             // We are reading response in JSONObject because we have configured in server like that.
                             JSONObject jsonObject = new JSONObject(response);
                             String strResponse = jsonObject.getString(SchoolContract.AUTH_RESPONSE_KEY);
                             if (strResponse.equals(SchoolContract.RESPONSE_SUCCESS)) {
-                                // Saving desired data in sharedpreferances.
-                                sharedPrefClass.writeUserName(UserName);
-                                sharedPrefClass.writeLoginStatus(true);
-                                sharedPrefClass.writeSessionId(jsonObject.getString(SchoolContract.SESSION_KEY));
-                                sharedPrefClass.writeAccountType(jsonObject.getString(SchoolContract.USER_ROLL_KEY));
+                                // Saving desired data in sharedpreferences.
+                                User user = new User (
+                                        true,
+                                        UserName,
+                                        jsonObject.getString(SchoolContract.USER_ROLL_KEY),
+                                        jsonObject.getString(SchoolContract.SESSION_KEY),
+                                        jsonObject.getString(SchoolContract.FULLNAME_KEY),
+                                        jsonObject.getString(SchoolContract.ROLL_NO_KEY),
+                                        jsonObject.getString(SchoolContract.STUDENT_CLASS_KEY)
+                                );
+                                //sharedPrefClass.writeUserLogin(user);
+                                SharedPrefClass.getInstance(getApplicationContext()).writeUserLogin(user);
 
                                 moveToNextActivityIfLogIn();
                             } else if (strResponse.equals(SchoolContract.AUTH_RESPONSE_INACTIVE)) {

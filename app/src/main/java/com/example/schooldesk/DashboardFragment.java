@@ -19,6 +19,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.schooldesk.user.SharedPrefClass;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,6 +52,8 @@ public class DashboardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         TextView mTextProfile = view.findViewById(R.id.text_profile);
+        TextView mTextName = view.findViewById(R.id.text_student_name);
+        mTextName.setText(SharedPrefClass.getInstance(getContext()).getUserFullName());
 
         mLinearTimeTable = view.findViewById(R.id.layout_time_table);
         mLinearTimeTable.setOnClickListener(new View.OnClickListener() {

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.example.schooldesk.data.ExamDetailItem;
 import com.example.schooldesk.data.ExamItems;
 import com.example.schooldesk.data.SchoolContract;
 import com.example.schooldesk.data.VolleySingleton;
+import com.example.schooldesk.user.SharedPrefClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,6 +56,9 @@ public class ExamDetailActivity extends AppCompatActivity {
         textExamDescription.setText(examDescription);
 
         //TODO... I am still showing student name from fix text. need to do something for that.
+        TextView mTextName = findViewById(R.id.text_student_name);
+        mTextName.setText(SharedPrefClass.getInstance(getApplicationContext()).getUserFullName());
+        
         mTotalMarks = findViewById(R.id.text_marks_scored);
         mTotalResult = findViewById(R.id.text_result);
         mSubjectAppeared = findViewById(R.id.text_subject_appeared);
@@ -120,9 +125,9 @@ public class ExamDetailActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put(SchoolContract.USERNAME_KEY, DashboardActivity.sharedPrefClass.readUserName());
-                params.put(SchoolContract.SESSION_SEND_KEY, DashboardActivity.sharedPrefClass.readSessionId());
-                params.put(SchoolContract.USER_ROLL_KEY, DashboardActivity.sharedPrefClass.readAccountType());
+                params.put(SchoolContract.USERNAME_KEY, SharedPrefClass.getInstance(getApplicationContext()).readUserName());
+                params.put(SchoolContract.SESSION_SEND_KEY, SharedPrefClass.getInstance(getApplicationContext()).readSessionId());
+                params.put(SchoolContract.USER_ROLL_KEY, SharedPrefClass.getInstance(getApplicationContext()).readAccountType());
                 params.put(SchoolContract.EXAM_ID_KEY, examId);
                 return params;
             }

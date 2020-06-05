@@ -26,8 +26,8 @@ public class DashboardActivity extends AppCompatActivity implements  NavigationV
     private Context mContext;
     // We have defined Object of SharedPreClass class.
     // Which will help to read all the preferences we have stored during the session.
-    @SuppressLint("StaticFieldLeak")
-    public static SharedPrefClass sharedPrefClass;
+    //@SuppressLint("StaticFieldLeak")
+    //public static SharedPrefClass sharedPrefClass;
 
     // Declare the DrawerLayout object as global.
     private DrawerLayout mDrawerLayout;
@@ -41,7 +41,7 @@ public class DashboardActivity extends AppCompatActivity implements  NavigationV
         mContext = getApplicationContext();
         mActivity = DashboardActivity.this;
         // Initialize the object of SharedPrefClass.
-        sharedPrefClass = new SharedPrefClass(this);
+        //sharedPrefClass = new SharedPrefClass(this);
 
         // We have already removed toolbar from the activity.
         // so, we have to all extra toolbar for activity.
@@ -111,11 +111,12 @@ public class DashboardActivity extends AppCompatActivity implements  NavigationV
 
     private void userLogOut(){
         // When you logout from the application, it will reset all the sharedpreferences to default.
-        // Here I have considered "User" as dafault user.
+        // Here I have considered "User" as default user.
         // Session Id, I would like keep it blank whenever it is not used.
-        sharedPrefClass.writeUserName("User");
+        /*sharedPrefClass.writeUserName("User");
         sharedPrefClass.writeLoginStatus(false);
-        sharedPrefClass.writeSessionId("");
+        sharedPrefClass.writeSessionId("");*/
+        SharedPrefClass.getInstance(getApplicationContext()).userLogout();
         finish();
     }
 

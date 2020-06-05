@@ -38,8 +38,8 @@ import com.example.schooldesk.data.SchoolContract;
 
 public class MainActivity extends AppCompatActivity {
     // First we will define Object of SharedPrefClass object.
-    @SuppressLint("StaticFieldLeak")
-    private static SharedPrefClass sharedPrefClass;
+    //@SuppressLint("StaticFieldLeak")
+    //private SharedPrefClass sharedPrefClass;
 
     private RequestQueue mStringRequest;
     private ProgressBar progressBar;
@@ -49,14 +49,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sharedPrefClass = new SharedPrefClass(this);
+        //sharedPrefClass = new SharedPrefClass(this);
 
         mStringRequest = VolleySingleton.getInstance(getApplication()).getRequestQueue();
         progressBar = new ProgressBar(this);
         progressBar = findViewById(R.id.initial_progressbar);
         progressBar.setVisibility(View.VISIBLE);
 
-        if (sharedPrefClass.readLoginStatus()) {
+        if (SharedPrefClass.getInstance(getApplicationContext()).readLoginStatus()) {
             checkLoginStatus();
         } else {
             movetoLoginActivity();
@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //System.out.println(response);
                         try {
                             // We are reading response in JSONObject because we have configured in server like that.
                             JSONObject jsonObject = new JSONObject(response);
@@ -115,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put(SchoolContract.USERNAME_KEY, sharedPrefClass.readUserName());
-                params.put(SchoolContract.SESSION_SEND_KEY, sharedPrefClass.readSessionId());
-                params.put(SchoolContract.USER_ROLL_KEY, sharedPrefClass.readAccountType());
+                params.put(SchoolContract.USERNAME_KEY, SharedPrefClass.getInstance(getApplicationContext()).readUserName());
+                params.put(SchoolContract.SESSION_SEND_KEY, SharedPrefClass.getInstance(getApplicationContext()).readSessionId());
+                params.put(SchoolContract.USER_ROLL_KEY, SharedPrefClass.getInstance(getApplicationContext()).readAccountType());
                 return params;
             }
         };
@@ -192,9 +191,10 @@ public class MainActivity extends AppCompatActivity {
             super.onPreExecute();
             MainActivity activity = activityWeakReference.get();
             if (activity == null || activity.isFinishing()) return;
+            /*
             if (sharedPrefClass.readLoginStatus()) {
                 return;
-            }
+            }*/
         }
 
         @Override
@@ -269,9 +269,10 @@ public class MainActivity extends AppCompatActivity {
             else if (s.contentEquals("login successful")) {
                 Toast.makeText(activity, "Login Successful", Toast.LENGTH_SHORT).show();
                 // Let us write the content in sharedpreference.
+                /*
                 sharedPrefClass.writeUserName("kuldip");
                 sharedPrefClass.writeLoginStatus(true);
-                sharedPrefClass.writeSessionId("session active");
+                sharedPrefClass.writeSessionId("session active");*/
 
                 // activity.moveToNextActivityIfLogIn();
 

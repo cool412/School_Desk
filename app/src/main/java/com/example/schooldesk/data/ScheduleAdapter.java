@@ -40,7 +40,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         String subject = currentItem.getSubject();
         String time = currentItem.getTime();
         String teacher = currentItem.getTeacher();
-        String firstThreeChar = subject.substring(0, 3);
+        //TODO.. what if the length is less then 3.
+        String firstThreeChar;
+        if (subject.length() > 3)
+            firstThreeChar = subject.substring(0, 3);
+        else
+            firstThreeChar = subject;
 
         holder.mSubjectView.setText(subject);
         holder.mTimeView.setText(time);

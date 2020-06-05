@@ -11,6 +11,9 @@ public class SchoolContract {
 
     // Key constants for HTTP request.
     public static String USERNAME_KEY = "Uname";
+    public static String FULLNAME_KEY = "Name";
+    public static String ROLL_NO_KEY = "RollNo";
+    public static String STUDENT_CLASS_KEY = "standard_title";
     public static String PASSWORD_KEY = "Pss";
     public static String USER_ROLL_KEY = "Isstudentteacher";
     public static String RESPONSE_KEY = "Response";

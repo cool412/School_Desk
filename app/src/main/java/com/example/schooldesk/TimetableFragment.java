@@ -34,6 +34,7 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -144,13 +145,14 @@ public class TimetableFragment extends Fragment {
             mDaySelect = savedInstanceState.getString("savedInst");
             assert mDaySelect != null;
             setTextViewColor(mDaySelect);
-        }
-        setTextViewColor(mDaySelect);
+        } else
+            setTextViewColor(mDaySelect);
 
         return view;
     }
+
     @Override
-    public void onSaveInstanceState(@NotNull Bundle curState){
+    public void onSaveInstanceState(@NotNull Bundle curState) {
         super.onSaveInstanceState(curState);
         curState.putString("savedInst", mDaySelect);
     }
@@ -161,11 +163,11 @@ public class TimetableFragment extends Fragment {
     }
 
     /*Below method is for changing the color of text clicked.
-    * from here it will also call a method to display respective day schedule.
-    * We have to put below line if we are using only color as resource.
-    * @SuppressLint("ResourceAsColor")
-    * Here we have used XML file so we do not need above line.
-    * */
+     * from here it will also call a method to display respective day schedule.
+     * We have to put below line if we are using only color as resource.
+     * @SuppressLint("ResourceAsColor")
+     * Here we have used XML file so we do not need above line.
+     * */
     private void setTextViewColor(String daySelect) {
         mDaySelect = daySelect;
 
@@ -207,9 +209,8 @@ public class TimetableFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println(response);
+                        //System.out.println(response);
                         try {
-
                             // We are reading response in JSONObject because we have configured in server like that.
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject.getString(SchoolContract.RESPONSE_KEY).equals(SchoolContract.RESPONSE_SUCCESS)) {
@@ -250,9 +251,9 @@ public class TimetableFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put(SchoolContract.USERNAME_KEY, DashboardActivity.sharedPrefClass.readUserName());
-                params.put(SchoolContract.SESSION_SEND_KEY, DashboardActivity.sharedPrefClass.readSessionId());
-                params.put(SchoolContract.USER_ROLL_KEY, DashboardActivity.sharedPrefClass.readAccountType());
+                params.put(SchoolContract.USERNAME_KEY, SharedPrefClass.getInstance(getContext()).readUserName());
+                params.put(SchoolContract.SESSION_SEND_KEY, SharedPrefClass.getInstance(getContext()).readSessionId());
+                params.put(SchoolContract.USER_ROLL_KEY, SharedPrefClass.getInstance(getContext()).readAccountType());
                 return params;
             }
         };
