@@ -1,4 +1,4 @@
-package com.example.schooldesk;
+package com.example.schooldesk.student;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,9 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
+import com.example.schooldesk.R;
 import com.example.schooldesk.calendar_view.CalendarCustomView;
-import com.example.schooldesk.data.ScheduleAdapter;
-import com.example.schooldesk.data.scheduleItems;
+import com.example.schooldesk.student.data.ScheduleAdapter;
+import com.example.schooldesk.student.data.scheduleItems;
 
 import java.util.ArrayList;
 

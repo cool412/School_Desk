@@ -1,4 +1,4 @@
-package com.example.schooldesk.data;
+package com.example.schooldesk.student.data;
 
 public class scheduleItems {
     private String mTime;

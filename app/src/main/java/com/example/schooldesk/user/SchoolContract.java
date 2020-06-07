@@ -1,4 +1,4 @@
-package com.example.schooldesk.data;
+package com.example.schooldesk.user;
 
 public class SchoolContract {
     // String constants.
@@ -61,6 +61,10 @@ public class SchoolContract {
     public static String SUBJECT_RESULT_NOT_DECLARE_RESPONSE = "Not Declared";
     public static String SUBJECT_RESULT_EXAM_PENDING_RESPONSE = "Exam Pending";
 
+    //Attendance flags.
+    public static String ATTENDANCE_PRESENT = "Present";
+    public static String ATTENDANCE_ABSENT = "Absent";
+    public static String ATTENDANCE_NO_ENTRY = "No Entry";
 
 
     // URL constants.

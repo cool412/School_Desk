@@ -1,11 +1,10 @@
-package com.example.schooldesk;
+package com.example.schooldesk.student;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,12 +19,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.schooldesk.data.ExamAdapter;
-import com.example.schooldesk.data.ExamItems;
-import com.example.schooldesk.data.ScheduleAdapter;
-import com.example.schooldesk.data.SchoolContract;
-import com.example.schooldesk.data.VolleySingleton;
-import com.example.schooldesk.data.scheduleItems;
+import com.example.schooldesk.R;
+import com.example.schooldesk.student.data.ExamAdapter;
+import com.example.schooldesk.student.data.ExamItems;
+import com.example.schooldesk.user.SchoolContract;
+import com.example.schooldesk.student.data.VolleySingleton;
 import com.example.schooldesk.user.SharedPrefClass;
 
 import org.json.JSONArray;
@@ -35,7 +33,6 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ExamFragment extends Fragment implements Serializable {

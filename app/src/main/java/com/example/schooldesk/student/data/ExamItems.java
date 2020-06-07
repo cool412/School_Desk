@@ -1,7 +1,6 @@
-package com.example.schooldesk.data;
+package com.example.schooldesk.student.data;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class ExamItems implements Serializable {
     private String mExamName, mExamDesc, mClassNumber, mExamStartDate, mExamEndDate, mExamId;

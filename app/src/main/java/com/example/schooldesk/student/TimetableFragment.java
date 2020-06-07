@@ -1,8 +1,6 @@
-package com.example.schooldesk;
+package com.example.schooldesk.student;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,12 +20,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.example.schooldesk.data.ScheduleAdapter;
-import com.example.schooldesk.data.SchoolContract;
-import com.example.schooldesk.data.VolleySingleton;
-import com.example.schooldesk.data.scheduleItems;
+import com.example.schooldesk.R;
+import com.example.schooldesk.student.data.ScheduleAdapter;
+import com.example.schooldesk.user.SchoolContract;
+import com.example.schooldesk.student.data.VolleySingleton;
+import com.example.schooldesk.student.data.scheduleItems;
 import com.example.schooldesk.user.SharedPrefClass;
 
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +36,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class TimetableFragment extends Fragment {
     private RecyclerView mRecyclerView;

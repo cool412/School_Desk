@@ -1,4 +1,4 @@
-package com.example.schooldesk.data;
+package com.example.schooldesk.student.data;
 
 public class ExamDetailItem {
     private String mDayOfExam, mMonthOfExam, mYearOfExam, mSubject, mTotalMarks,

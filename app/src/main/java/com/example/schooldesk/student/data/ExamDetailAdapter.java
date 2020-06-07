@@ -1,17 +1,17 @@
-package com.example.schooldesk.data;
+package com.example.schooldesk.student.data;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.schooldesk.R;
+import com.example.schooldesk.user.SchoolContract;
 
 import java.util.ArrayList;
 

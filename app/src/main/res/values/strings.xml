@@ -28,12 +28,11 @@
     <string name="user_name">USER NAME</string>
     <string name="password">PASSWORD</string>
     <string name="sign_in">sign in</string>
-    <string name="touble_message">Trouble Sign in? Click here</string>
+    <string name="trouble_message">Trouble Sign in? Click here</string>
     <string name="login_image">Login Image</string>
     <string name="visibility_string">For visibility of password</string>
     <string name="enter_registered_mobile_number">Enter Registered Mobile Number</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sun_txt">Sun</string>
     <string name="mon_txt">Mon</string>
@@ -70,5 +69,6 @@
     <string name="current_date">Current Date</string>
     <string name="attendance_taken">Attendance Taken</string>
     <string name="image_desc">School Photo</string>
+    <string name="no_subject_string">No Subjects to display!</string>
 
 </resources>

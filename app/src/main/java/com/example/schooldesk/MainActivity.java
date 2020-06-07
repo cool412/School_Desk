@@ -1,18 +1,10 @@
 package com.example.schooldesk;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +15,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.schooldesk.data.VolleySingleton;
+import com.example.schooldesk.student.DashboardActivity;
+import com.example.schooldesk.student.data.VolleySingleton;
+import com.example.schooldesk.teacher.TeacherDashboardActivity;
 import com.example.schooldesk.user.SharedPrefClass;
 
 import org.json.JSONException;
@@ -33,7 +27,7 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.example.schooldesk.data.SchoolContract;
+import com.example.schooldesk.user.SchoolContract;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -74,8 +68,16 @@ public class MainActivity extends AppCompatActivity {
 
     //Below method is for moving to next activity if user is logged in.
     private void moveToNextActivityIfLogIn() {
-        // Use is still logged in then we will continue with DashboardActivity.
-        Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+        Intent intent;
+        // Use is still logged in then we will continue with respective activity.
+        if (SharedPrefClass.getInstance(getApplicationContext()).readAccountType().equals(SchoolContract.STUDENT_ROLL)) {
+            intent = new Intent(MainActivity.this, DashboardActivity.class);
+        } else if (SharedPrefClass.getInstance(getApplicationContext()).readAccountType().equals(SchoolContract.TEACHER_ROLL)) {
+            intent = new Intent(MainActivity.this, TeacherDashboardActivity.class);
+        } else {
+            Toast.makeText(this, "Invalid user, please login again !", Toast.LENGTH_SHORT).show();
+            intent = new Intent(MainActivity.this, LoginActivity.class);
+        }
         // The below finish will destroy the MainActivity as soon as the new activity is invoked.
         finish();
         progressBar.setVisibility(View.GONE);

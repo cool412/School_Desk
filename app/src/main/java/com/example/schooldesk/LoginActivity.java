@@ -2,7 +2,6 @@ package com.example.schooldesk;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,8 +19,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.schooldesk.data.SchoolContract;
-import com.example.schooldesk.data.VolleySingleton;
+import com.example.schooldesk.student.DashboardActivity;
+import com.example.schooldesk.user.SchoolContract;
+import com.example.schooldesk.student.data.VolleySingleton;
+import com.example.schooldesk.teacher.TeacherDashboardActivity;
 import com.example.schooldesk.user.SharedPrefClass;
 import com.example.schooldesk.user.User;
 
@@ -84,8 +85,16 @@ public class LoginActivity extends AppCompatActivity {
     //Below method is for moving to next activity if user is logged in.
     private void moveToNextActivityIfLogIn() {
 
+        Intent intent;
         // Use is still logged in then we will continue with DashboardActivity.
-        Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+        if (SharedPrefClass.getInstance(getApplicationContext()).readAccountType().equals(SchoolContract.STUDENT_ROLL)) {
+            intent = new Intent(LoginActivity.this, DashboardActivity.class);
+        } else if (SharedPrefClass.getInstance(getApplicationContext()).readAccountType().equals(SchoolContract.TEACHER_ROLL)) {
+            intent = new Intent(LoginActivity.this, TeacherDashboardActivity.class);
+        }else {
+            Toast.makeText(this, "Invalid user, please enter correct details !", Toast.LENGTH_SHORT).show();
+            return;
+        }
         finish();
         progressBar.setVisibility(View.GONE);
         startActivity(intent);
@@ -131,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                             String strResponse = jsonObject.getString(SchoolContract.AUTH_RESPONSE_KEY);
                             if (strResponse.equals(SchoolContract.RESPONSE_SUCCESS)) {
                                 // Saving desired data in sharedpreferences.
-                                User user = new User (
+                                User user = new User(
                                         true,
                                         UserName,
                                         jsonObject.getString(SchoolContract.USER_ROLL_KEY),

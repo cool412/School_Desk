@@ -1,6 +1,5 @@
-package com.example.schooldesk;
+package com.example.schooldesk.student;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +15,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.schooldesk.ChangePasswordActivity;
+import com.example.schooldesk.R;
 import com.example.schooldesk.user.SharedPrefClass;
 import com.google.android.material.navigation.NavigationView;
 
@@ -96,7 +97,7 @@ public class DashboardActivity extends AppCompatActivity implements  NavigationV
                         new ResultFragment()).addToBackStack(null).commit();
                 break;
             case R.id.menu_change_password:
-                Intent intent = new Intent(this,ChangePasswordActivity.class);
+                Intent intent = new Intent(this, ChangePasswordActivity.class);
                 intent.putExtra("class","change_password");
                 finish();
                 startActivity(intent);

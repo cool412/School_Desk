@@ -88,7 +88,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:gravity="right"
-        android:text="@string/touble_message"
+        android:text="@string/trouble_message"
         tools:ignore="RtlHardcoded" />
 
 </RelativeLayout>

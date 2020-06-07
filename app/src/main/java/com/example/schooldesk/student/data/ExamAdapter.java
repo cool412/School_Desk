@@ -1,8 +1,7 @@
-package com.example.schooldesk.data;
+package com.example.schooldesk.student.data;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +45,7 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder
         return new ExamViewHolder(view, mListener);
     }
 
-    @SuppressLint("SetTextI18n")
+
     @Override
     public void onBindViewHolder(@NonNull ExamViewHolder holder, int position) {
         ExamItems currentItem = mExamList.get(position);
@@ -70,7 +69,7 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder
         }
 
         int strLength = examSubject.length;
-        System.out.println(strLength);
+        //System.out.println(strLength);
         StringBuilder textSubject = new StringBuilder();
         //System.out.println(textSubject);
         if (strLength > 0) {
@@ -83,7 +82,7 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder
             holder.mTextExamSubject.setText(Html.fromHtml(str.substring(0, str.length() - 19)));
             //holder.mTextExamSubject.setText(Html.fromHtml(String.valueOf(textSubject.append("</body></html>"))));
         } else {
-            holder.mTextExamSubject.setText("No Subjects to display!");
+            holder.mTextExamSubject.setText(R.string.no_subject_string);
         }
 
         //TODO: If there is not subject then what to show is pending.
